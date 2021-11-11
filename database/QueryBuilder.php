@@ -12,11 +12,11 @@ class QueryBuilder
 
     }
 
-    function getAll()
+    public function getAll($table)
     {
 
         //Подготавливаем запрос
-        $sql = 'SELECT * FROM `products`';
+        $sql = "SELECT * FROM {$table}";
         $statement = $this->pdo->prepare($sql);
 
         //Выполняем запрос
