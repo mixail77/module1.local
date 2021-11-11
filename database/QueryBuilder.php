@@ -23,9 +23,7 @@ class QueryBuilder
         $statement->execute();
 
         //Получаем результат в виде массива
-        $arProducts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $arProducts;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
 
     }
 

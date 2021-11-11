@@ -3,11 +3,14 @@
 class Connection
 {
 
-    public static function make()
+    public static function make($arConfig)
     {
 
         //Подключаемся к базе
-        return new PDO('mysql:host=localhost;dbname=module1;charset=utf8', 'admin', 'root');
+        return new PDO("mysql:host={$arConfig['DATABASE']['HOST']};dbname={$arConfig['DATABASE']['NAME']};charset={$arConfig['DATABASE']['CHARSET']}",
+            $arConfig['DATABASE']['USER'],
+            $arConfig['DATABASE']['PASSWORD']
+        );
 
     }
 
