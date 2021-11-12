@@ -1,11 +1,11 @@
 <?php
 
-include 'include/functions.php';
-$db = include 'database/start.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/include/init.php';
+$db = include $_SERVER['DOCUMENT_ROOT'] . '/database/start.php';
 
 //Получаем товары
 $arProducts = $db->getAll('products');
 
-include 'index.view.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/view/index.view.php';
 
 ?>
