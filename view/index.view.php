@@ -46,8 +46,8 @@
                                 <th scope="row"><?= $product['ID'] ?></th>
                                 <td><a href="show.php?id=<?= $product['ID'] ?>"><?= $product['TITLE'] ?></a></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">Редактировать</a>
-                                    <a href="#" class="btn btn-danger">Удалить</a>
+                                    <a href="edit.php?id=<?= $product['ID'] ?>" class="btn btn-warning">Редактировать</a>
+                                    <a href="delete.php?id=<?= $product['ID'] ?>" class="btn btn-danger">Удалить</a>
                                 </td>
                             </tr>
                         <? endforeach; ?>
