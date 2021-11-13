@@ -44,7 +44,7 @@
                         <? foreach ($arProducts as $product): ?>
                             <tr>
                                 <th scope="row"><?= $product['ID'] ?></th>
-                                <td><?= $product['TITLE'] ?></td>
+                                <td><a href="show.php?id=<?= $product['ID'] ?>"><?= $product['TITLE'] ?></a></td>
                                 <td>
                                     <a href="#" class="btn btn-warning">Редактировать</a>
                                     <a href="#" class="btn btn-danger">Удалить</a>
