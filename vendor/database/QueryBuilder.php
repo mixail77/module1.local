@@ -5,15 +5,28 @@ class QueryBuilder
 
     protected $pdo;
 
-    public function __construct($pdo)
+    public function __construct()
     {
 
-        $this->pdo = $pdo;
+        $arConfig = self::getConfig();
+
+        if (!empty($arConfig)) {
+
+            $this->pdo = new PDO("mysql:host={$arConfig['DATABASE']['HOST']};dbname={$arConfig['DATABASE']['NAME']};charset={$arConfig['DATABASE']['CHARSET']}",
+                $arConfig['DATABASE']['USER'],
+                $arConfig['DATABASE']['PASSWORD']
+            );
+
+        }
 
     }
 
     public function getAll($table)
     {
+
+        if (empty($table)) {
+            return false;
+        }
 
         //Подготавливаем запрос
         $sql = "SELECT * FROM {$table}";
@@ -27,8 +40,35 @@ class QueryBuilder
 
     }
 
+    public function getById($table, $id)
+    {
+
+        if (empty($table) || empty($id)) {
+            return false;
+        }
+
+        $sql = "SELECT * FROM {$table} WHERE id=:id";
+
+        //Подготавливаем запрос
+        $statement = $this->pdo->prepare($sql);
+
+        //$statement->bindParam(':id', $id);
+        $statement->bindValue(':id', $id);
+
+        //Выполняем запрос
+        $statement->execute();
+
+        //Возвращаем результат в виде массива
+        return $statement->fetch(PDO::FETCH_ASSOC);
+
+    }
+
     public function create($table, $arFields)
     {
+
+        if (empty($table) || !is_array($arFields)) {
+            return false;
+        }
 
         //Формируем запрос
         $key = implode(',', array_keys($arFields));
@@ -49,6 +89,10 @@ class QueryBuilder
 
     public function update($table, $arFields)
     {
+
+        if (empty($table) || !is_array($arFields)) {
+            return false;
+        }
 
         //Формируем запрос
         $arKeys = array_keys($arFields);
@@ -78,27 +122,12 @@ class QueryBuilder
 
     }
 
-    public function getOne($table, $id)
-    {
-
-        $sql = "SELECT * FROM {$table} WHERE id=:id";
-
-        //Подготавливаем запрос
-        $statement = $this->pdo->prepare($sql);
-
-        //$statement->bindParam(':id', $id);
-        $statement->bindValue(':id', $id);
-
-        //Выполняем запрос
-        $statement->execute();
-
-        //Возвращаем результат в виде массива
-        return $statement->fetch(PDO::FETCH_ASSOC);
-
-    }
-
     public function delete($table, $id)
     {
+
+        if (empty($table) || empty($id)) {
+            return false;
+        }
 
         $sql = "DELETE FROM {$table} WHERE id=:id";
 
@@ -116,6 +145,15 @@ class QueryBuilder
 
     }
 
-}
+    public static function getConfig()
+    {
 
-?>
+        if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/database.php')) {
+            return false;
+        }
+
+        return include $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
+
+    }
+
+}

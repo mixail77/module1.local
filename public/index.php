@@ -1,22 +1,9 @@
 <?php
-
-//Маршрутизация
-$arRoutes = [
-    '/' => '/index.php',
-    '/show' => '/index.php',
-];
-
-$route = $_SERVER['REQUEST_URI'];
-
-if (array_key_exists($route, $arRoutes)) {
-
-    include $_SERVER['DOCUMENT_ROOT'] . $arRoutes[$route];
-    exit();
-
-} else {
-
-    include $_SERVER['DOCUMENT_ROOT'] . '/404.php';
-
+if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/function/init.php')) {
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/function/init.php');
 }
+
+$rout = new Router();
+$rout->getController();
 
 ?>

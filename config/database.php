@@ -1,6 +1,5 @@
 <?php
 
-//Конфигурационный файл
 return [
     'DATABASE' => [
         'HOST' => 'localhost',
@@ -9,6 +8,4 @@ return [
         'PASSWORD' => 'root',
         'CHARSET' => 'utf8',
     ],
-]
-
-?>
+];
