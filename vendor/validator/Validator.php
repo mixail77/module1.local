@@ -3,14 +3,16 @@
 class Validator
 {
 
-    public $arServer;
+    private $arServer;
+    private $arPost;
+    private $arQuery;
+    private $postValue;
+    private $queryValue;
 
-    public $arPost;
-    public $arQuery;
-
-    public $postValue;
-    public $queryValue;
-
+    /**
+     * В конструкторе устанавливаем значения суперглобальных массивов
+     * Основная мысль - стараемся не работать с суперглобальных массивами на прямую
+     */
     public function __construct()
     {
 
@@ -20,6 +22,10 @@ class Validator
 
     }
 
+    /**
+     * Проверяет, отправлен ли запрос методом POST
+     * @return bool
+     */
     public function isPost()
     {
 
@@ -33,6 +39,11 @@ class Validator
 
     }
 
+    /**
+     * Проверяет и возвращает значение из POST массива по ключу
+     * @param $key
+     * @return false|string
+     */
     public function getPost($key)
     {
 
@@ -48,6 +59,11 @@ class Validator
 
     }
 
+    /**
+     * Проверяет и возвращает значение из GET массива по ключу
+     * @param $key
+     * @return false|string
+     */
     public function getQuery($key)
     {
 

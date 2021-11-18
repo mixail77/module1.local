@@ -6,6 +6,10 @@ class Router
     private $rout;
     private $arRoutes;
 
+    /**
+     * В конструкторе получаем массив описывающий существующую маршрутизацию
+     * Устанавливаем значение текущего REQUEST_URI без параметров
+     */
     public function __construct()
     {
 
@@ -20,6 +24,10 @@ class Router
 
     }
 
+    /**
+     * Подключает контроллер для текущего REQUEST_URI
+     * Если контроллер не найден, подключается контроллер ошибки 404
+     */
     public function getController()
     {
 
@@ -34,6 +42,10 @@ class Router
 
     }
 
+    /**
+     * Получает настройки маршрутизации из конфигурационного файла
+     * @return false|mixed
+     */
     public static function getConfig()
     {
 
