@@ -30,13 +30,14 @@
         <div class="row">
             <div class="col-8 offset-md-2">
 
-                <form action="/edit.php" method="POST">
-                    <input type="hidden" name="id" value="<?= $arProduct['ID'] ?>">
+                <?= Flash::showMessage() ?>
+
+                <form action="/edit.php?id=<?= $id ?>" method="POST">
                     <div class="mb-3">
                         <label for="title" class="form-label">Название товара</label>
-                        <input type="text" name="title" class="form-control" id="title" value="<?= $arProduct['TITLE'] ?>">
+                        <input type="text" name="title" class="form-control" id="title" value="<?= ($request->isPost()) ? $title : $arProduct['TITLE'] ?>">
                         <label for="price" class="form-label">Стоимость товара</label>
-                        <input type="text" name="price" class="form-control" id="price" value="<?= $arProduct['PRICE'] ?>">
+                        <input type="text" name="price" class="form-control" id="price" value="<?= ($request->isPost()) ? $price : $arProduct['PRICE'] ?>">
                     </div>
                     <button type="submit" class="btn btn-success">Редактировать</button>
                 </form>

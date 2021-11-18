@@ -20,13 +20,6 @@ class Router
 
     }
 
-    public function getRout()
-    {
-
-        return $this->rout;
-
-    }
-
     public function getController()
     {
 

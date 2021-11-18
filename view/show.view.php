@@ -30,7 +30,9 @@
         <div class="row">
             <div class="col-8 offset-md-2">
 
-                <h1><?= $arProduct['TITLE'] ?></h1>
+                <?= Flash::showMessage() ?>
+
+                <h1><?= $arProduct['TITLE'] ?> - <?= $arProduct['PRICE'] ?></h1>
 
             </div>
         </div>

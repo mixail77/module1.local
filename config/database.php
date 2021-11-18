@@ -1,11 +1,9 @@
 <?php
 
 return [
-    'DATABASE' => [
-        'HOST' => 'localhost',
-        'NAME' => 'module1',
-        'USER' => 'admin',
-        'PASSWORD' => 'root',
-        'CHARSET' => 'utf8',
-    ],
+    'HOST' => 'localhost',
+    'NAME' => 'module1',
+    'USER' => 'admin',
+    'PASSWORD' => 'root',
+    'CHARSET' => 'utf8',
 ];

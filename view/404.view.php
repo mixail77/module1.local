@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-8 offset-md-2">
 
-                <h1>Ошибка 404</h1>
+                <?= Flash::showMessage() ?>
 
             </div>
         </div>
