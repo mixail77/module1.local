@@ -3,7 +3,7 @@
 class QueryBuilder
 {
 
-    protected $pdo;
+    private $pdo;
 
     /**
      * В конструкторе получаем настройки для подключения и подключаемся к MySQL
