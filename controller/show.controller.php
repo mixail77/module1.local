@@ -1,5 +1,9 @@
 <?php
 
+use Classes\Validator;
+use Classes\QueryBuilder;
+use Classes\Flash;
+
 $request = new Validator();
 
 $id = (int)$request->getQuery('id');

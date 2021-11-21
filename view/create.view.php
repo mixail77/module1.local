@@ -1,3 +1,8 @@
+<?php
+
+use Classes\Flash;
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>

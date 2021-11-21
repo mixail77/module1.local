@@ -1,5 +1,7 @@
 <?php
 
+use Classes\QueryBuilder;
+
 //Получаем товары
 $db = new QueryBuilder();
 $arProducts = $db->getAll('products');
