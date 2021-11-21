@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-class Validator
+class Request
 {
 
     private $arServer;
@@ -42,42 +42,30 @@ class Validator
     }
 
     /**
-     * Проверяет и возвращает значение из POST массива по ключу
+     * Возвращает безопасное значение из POST массива по ключу
      * @param $key
-     * @return false|string
+     * @return string
      */
     public function getPost($key)
     {
 
         $this->postValue = trim(strip_tags($this->arPost[$key]));
 
-        if (!empty($this->postValue)) {
-
-            return $this->postValue;
-
-        }
-
-        return false;
+        return $this->postValue;
 
     }
 
     /**
-     * Проверяет и возвращает значение из GET массива по ключу
+     * Возвращает безопасное значение из GET массива по ключу
      * @param $key
-     * @return false|string
+     * @return string
      */
     public function getQuery($key)
     {
 
         $this->queryValue = trim(strip_tags($this->arQuery[$key]));
 
-        if (!empty($this->queryValue)) {
-
-            return $this->queryValue;
-
-        }
-
-        return false;
+        return $this->queryValue;
 
     }
 

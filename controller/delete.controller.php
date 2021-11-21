@@ -1,14 +1,16 @@
 <?php
 
+use Classes\Flash;
+use Classes\Request;
 use Classes\Validator;
 use Classes\QueryBuilder;
-use Classes\Flash;
 
-$request = new Validator();
+$request = new Request();
+$validator = new Validator();
 
 $id = (int)$request->getQuery('id');
 
-if ($id) {
+if ($validator->isNotEmpty($id)) {
 
     //Удаляем товар
     $db = new QueryBuilder();

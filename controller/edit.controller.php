@@ -1,10 +1,12 @@
 <?php
 
+use Classes\Flash;
+use Classes\Request;
 use Classes\Validator;
 use Classes\QueryBuilder;
-use Classes\Flash;
 
-$request = new Validator();
+$request = new Request();
+$validator = new Validator();
 
 $id = (int)$request->getQuery('id');
 
@@ -13,7 +15,7 @@ if ($request->isPost()) {
     $title = $request->getPost('title');
     $price = $request->getPost('price');
 
-    if ($id && $title && is_numeric($price)) {
+    if ($validator->isNotEmpty([$id, $title]) && $validator->isNumeric($price)) {
 
         //Обновляет товар
         $db = new QueryBuilder();
@@ -34,7 +36,7 @@ if ($request->isPost()) {
 
 } else {
 
-    if ($id) {
+    if ($validator->isNotEmpty($id)) {
 
         //Получаем товар
         $db = new QueryBuilder();

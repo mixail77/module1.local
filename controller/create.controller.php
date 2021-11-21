@@ -1,17 +1,19 @@
 <?php
 
+use Classes\Flash;
+use Classes\Request;
 use Classes\Validator;
 use Classes\QueryBuilder;
-use Classes\Flash;
 
-$request = new Validator();
+$request = new Request();
+$validator = new Validator();
 
 if ($request->isPost()) {
 
     $title = $request->getPost('title');
     $price = $request->getPost('price');
 
-    if ($title && is_numeric($price)) {
+    if ($validator->isNotEmpty($title) && $validator->isNumeric($price)) {
 
         //Добавляем новый товар
         $db = new QueryBuilder();
